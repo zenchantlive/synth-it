@@ -144,7 +144,7 @@ async function generateWebsite() {
       } else if (message.type === 'result') {
         console.log('__TOOL_RESULT__', JSON.stringify({ 
           type: 'tool_result', 
-          result: (message as any).result 
+          result: message.result 
         }));
       }
     }

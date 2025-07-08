@@ -22,9 +22,10 @@ export default function GeneratePage() {
   
   const [messages, setMessages] = useState<Message[]>([]);
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
-  const [isGenerating, setIsGenerating] = useState(true);
+  const [isGenerating, setIsGenerating] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const hasStartedRef = useRef(false);
   
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -40,8 +41,16 @@ export default function GeneratePage() {
       return;
     }
     
+    // Prevent double execution in StrictMode
+    if (hasStartedRef.current) {
+      return;
+    }
+    hasStartedRef.current = true;
+    
+    setIsGenerating(true);
     generateWebsite();
-  }, [prompt]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [prompt, router]);
   
   const generateWebsite = async () => {
     try {
@@ -134,20 +143,22 @@ export default function GeneratePage() {
   };
 
   return (
-    <main className="min-h-screen bg-black flex flex-col">
+    <main className="h-screen bg-black flex flex-col overflow-hidden relative">
       <Navbar />
+      {/* Spacer for navbar */}
+      <div className="h-16" />
       
-      <div className="flex-1 flex">
+      <div className="flex-1 flex overflow-hidden">
         {/* Left side - Chat */}
-        <div className="w-1/2 flex flex-col border-r border-gray-800">
+        <div className="w-[30%] flex flex-col border-r border-gray-800">
           {/* Header */}
           <div className="p-4 border-b border-gray-800">
             <h2 className="text-white font-semibold">Lovable</h2>
-            <p className="text-gray-400 text-sm mt-1">{prompt}</p>
+            <p className="text-gray-400 text-sm mt-1 break-words">{prompt}</p>
           </div>
           
           {/* Messages */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 overflow-x-hidden">
             {messages.map((message, index) => (
               <div key={index}>
                 {message.type === "claude_message" && (
@@ -158,21 +169,21 @@ export default function GeneratePage() {
                       </div>
                       <span className="text-white font-medium">Lovable</span>
                     </div>
-                    <p className="text-gray-300 whitespace-pre-wrap">{message.content}</p>
+                    <p className="text-gray-300 whitespace-pre-wrap break-words">{message.content}</p>
                   </div>
                 )}
                 
                 {message.type === "tool_use" && (
-                  <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-800">
-                    <div className="flex items-center gap-2 text-sm">
-                      <span className="text-blue-400">🔧 {message.name}</span>
-                      <span className="text-gray-500">{formatToolInput(message.input)}</span>
+                  <div className="bg-gray-900/50 rounded-lg p-3 border border-gray-800 overflow-hidden">
+                    <div className="flex items-start gap-2 text-sm">
+                      <span className="text-blue-400 flex-shrink-0">🔧 {message.name}</span>
+                      <span className="text-gray-500 break-all">{formatToolInput(message.input)}</span>
                     </div>
                   </div>
                 )}
                 
                 {message.type === "progress" && (
-                  <div className="text-gray-500 text-sm font-mono">
+                  <div className="text-gray-500 text-sm font-mono break-all">
                     {message.message}
                   </div>
                 )}
@@ -219,7 +230,7 @@ export default function GeneratePage() {
         </div>
         
         {/* Right side - Preview */}
-        <div className="w-1/2 bg-gray-950 flex items-center justify-center">
+        <div className="w-[70%] bg-gray-950 flex items-center justify-center">
           {!previewUrl && isGenerating && (
             <div className="text-center">
               <div className="w-16 h-16 bg-gray-800 rounded-2xl flex items-center justify-center mb-4">
