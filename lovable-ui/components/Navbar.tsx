@@ -11,21 +11,21 @@ export default function Navbar() {
         >
           {/* Simple gradient square to mimic Lovable logo */}
           <span className="inline-block w-6 h-6 rounded-sm bg-gradient-to-br from-orange-400 via-pink-500 to-blue-500" />
-          Lovable
+          Synth-It
         </a>
 
         <div className="hidden md:flex items-center gap-8 text-sm text-gray-300">
           <a href="#" className="hover:text-white transition-colors">
-            Community
+            Synthesizers
           </a>
           <a href="#" className="hover:text-white transition-colors">
-            Enterprise
+            Pro Audio
           </a>
           <a href="#" className="hover:text-white transition-colors">
-            Learn
+            Tutorials
           </a>
           <a href="#" className="hover:text-white transition-colors">
-            Shipped
+            Gallery
           </a>
         </div>
       </div>
