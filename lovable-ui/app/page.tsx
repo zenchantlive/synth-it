@@ -31,15 +31,15 @@ export default function Home() {
         <div className="max-w-4xl mx-auto text-center">
           {/* Hero Section */}
           <h1 className="text-4xl sm:text-4xl md:text-4xl font-bold text-white mb-6">
-            Build something with Lovable-clone
+            Create Web Synthesizers with Synth-It
           </h1>
           <h3 className="text-xl sm:text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            BUILT WITH CLAUDE CODE
+            AI-POWERED SYNTHESIZER CREATION
           </h3>
 
           <p className="text-xl sm:text-xl text-gray-300 mb-12 max-w-2xl mx-auto">
-            Turn your ideas into production-ready code in minutes. Powered by
-            Claude's advanced AI capabilities.
+            Turn your musical ideas into playable web synthesizers in minutes.
+            From wobble bass to ambient pads, powered by Claude's AI.
           </p>
 
           {/* Input Section */}
@@ -47,7 +47,7 @@ export default function Home() {
             <div className="relative flex items-center bg-black rounded-2xl border border-gray-800 shadow-2xl px-2">
               {/* Textarea */}
               <textarea
-                placeholder="Ask Lovable to create a prototype..."
+                placeholder="Describe the synthesizer you want to create..."
                 value={prompt}
                 onChange={(e) => setPrompt(e.target.value)}
                 onKeyDown={(e) => {
@@ -110,40 +110,40 @@ export default function Home() {
               <button
                 onClick={() =>
                   setPrompt(
-                    "Create a modern blog website with markdown support"
+                    "Create a wobble bass synthesizer with LFO-controlled filter cutoff and computer keyboard control"
                   )
                 }
                 className="px-4 py-2 text-sm text-gray-400 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gray-700/50 transition-colors border border-gray-700"
               >
-                Blog website
+                Wobble Bass
               </button>
               <button
                 onClick={() =>
-                  setPrompt("Build a portfolio website with project showcase")
+                  setPrompt("Build an 8-pad drum machine with volume sliders and BPM control")
                 }
                 className="px-4 py-2 text-sm text-gray-400 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gray-700/50 transition-colors border border-gray-700"
               >
-                Portfolio site
-              </button>
-              <button
-                onClick={() =>
-                  setPrompt(
-                    "Create an e-commerce product catalog with shopping cart"
-                  )
-                }
-                className="px-4 py-2 text-sm text-gray-400 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gray-700/50 transition-colors border border-gray-700"
-              >
-                E-commerce
+                Drum Machine
               </button>
               <button
                 onClick={() =>
                   setPrompt(
-                    "Build a dashboard with charts and data visualization"
+                    "Make a subtractive synthesizer with oscillator, filter, and ADSR envelope controls"
                   )
                 }
                 className="px-4 py-2 text-sm text-gray-400 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gray-700/50 transition-colors border border-gray-700"
               >
-                Dashboard
+                Subtractive Synth
+              </button>
+              <button
+                onClick={() =>
+                  setPrompt(
+                    "Create an FM synthesizer with 2 operators and computer keyboard control"
+                  )
+                }
+                className="px-4 py-2 text-sm text-gray-400 bg-gray-800/50 backdrop-blur-sm rounded-full hover:bg-gray-700/50 transition-colors border border-gray-700"
+              >
+                FM Synthesizer
               </button>
             </div>
           </div>
