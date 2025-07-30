@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:tonejs.github.io)",
+      "Bash(npm run dev:*)",
+      "Bash(npm install)",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "Bash(ls:*)",
+      "Bash(curl -s http://localhost:3000)"
+    ],
+    "deny": []
+  }
+}
